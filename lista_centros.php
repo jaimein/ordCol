@@ -14,7 +14,7 @@ if ($stmt = $conexion->prepare($query)) {
     // enlace a alta de cliente
     echo "<div>";
     echo "<a href='index.php?accion=altas'>Alta ordenadores</a>";
-    echo "<a href='incidencias.php'>Añadir incidencia</a>";
+    echo "<a href='index.php?incidencias.php'>Añadir incidencia</a>";
     echo "</div>";
     //cabecera de los datos mostrados
     echo "<table>"; //start table
@@ -29,15 +29,16 @@ if ($stmt = $conexion->prepare($query)) {
     //recorrido por el resultado de la consulta
     while ($stmt->fetch()) {
         echo "<tr>";
-        echo '<form method="get" action="altas_especifico.php">';
+        echo '<form method="get" action="index.php?accion=altas_especifico">';
+        echo '<input type="hidden" name="accion" value="lista"/>';
         echo '<td><input type="text" name="idCentro" size="3" value="' . $id . '" readonly /></td>';
         echo '<td><input type="text" name="nombreCentro" value="' . $nombre . '" readonly /></td>';
         echo '<td><input type="text" name="dirrecion" value="' . $dirrecion . '" readonly /></td>';
         echo '<td><input type="text" name="telefono" value="' . $telefono . '" readonly /></td>';
         echo '<td><input type="text" name="poblacion" value="' . $poblacion . '" readonly /></td>';
         echo '<td>';
-        echo '<input type="submit" value="Añadir para este centro">';
-        echo '<input type="button" value="Lista este centro" onclick = "this.form.action = lista.php">';
+        // echo "<input type='submit' value='Añadir para este centro' onclick=this.form.action='index.php?accion=altas'>";
+        echo '<input type="submit" value="Lista este centro">';
         echo '</form></td>';
 
         echo "</tr>\n";
